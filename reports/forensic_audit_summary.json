@@ -1,0 +1,22 @@
+{
+  "generated_by": "src/forensic_analysis.py",
+  "scope": "reproducible forensic audit signals; no causal claims",
+  "outputs": {
+    "payment_deduplication_impact": "data/processed/payment_deduplication_impact.csv",
+    "timezone_sensitivity": "data/processed/timezone_sensitivity.csv",
+    "vendor_mapping_audit": "data/processed/vendor_mapping_audit.csv",
+    "agent_identity_audit": "data/processed/agent_identity_audit.csv",
+    "denominator_audit": "data/processed/denominator_audit.csv",
+    "population_mix_audit": "data/processed/population_mix_audit.csv",
+    "contact_survivorship_audit": "data/processed/contact_survivorship_audit.csv",
+    "attribution_window_audit": "data/processed/attribution_window_audit.csv"
+  },
+  "limitations": [
+    "Timezone field semantics are undocumented; timezone audit is sensitivity analysis, not a correction.",
+    "Vendor disposition mapping effective dates and approved crosswalk are absent.",
+    "Identity conflicts require HR/vendor master-data adjudication.",
+    "Historical month-opening eligible balance and eligibility rules are absent, so true recovery rate and denominator manipulation cannot be conclusively tested.",
+    "No randomized assignment or holdout exists; targeting/campaign effects remain descriptive.",
+    "Attribution-window sensitivity is not causal attribution because payment may be unrelated to treatment and exposures overlap."
+  ]
+}

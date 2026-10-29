@@ -1,0 +1,5 @@
+metric,value
+accounts,30000
+accounts_with_no_status_history,4001
+accounts_whose_snapshot_status_differs_from_latest_history,22295
+warning,Snapshot status is not a historical eligible-population denominator; status history must be contract-validated

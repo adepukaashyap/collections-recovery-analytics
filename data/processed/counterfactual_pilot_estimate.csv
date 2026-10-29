@@ -1,0 +1,2 @@
+status,reason,n_control,n_treatment,cash_lift_per_eligible_inr,cash_lift_ci95_low_inr,cash_lift_ci95_high_inr,cost_lift_per_eligible_inr,net_benefit_lift_per_eligible_inr,causal_roi_pct
+NOT_RUN,No populated randomized pilot outcomes supplied,0,0,,,,,,

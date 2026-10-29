@@ -1,0 +1,11 @@
+metric,value
+raw_payment_rows,25500.0
+raw_success_amount_before_dedup_inr,1341485926.33
+rows_after_payment_id_dedup,25000.0
+rows_after_transaction_reference_dedup,21189.0
+canonical_effective_success_amount_inr,1112566691.46
+raw_success_event_amount_minus_canonical_effective_cash_inr,228919234.8699999
+duplicate_reference_groups,3745.0
+conflicting_reference_groups,3407.0
+missing_or_blank_reference_rows,382.0
+same_timestamp_duplicate_payment_id_groups,0.0

@@ -1,0 +1,5 @@
+metric,value
+accounts_without_call_attempt,549
+accounts_without_call_event,1592
+accounts_without_raw_success_payment,16716
+warning,Coverage gaps are visible; whether they are denominator exclusions depends on the business eligibility contract

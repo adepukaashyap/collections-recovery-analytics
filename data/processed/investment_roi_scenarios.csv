@@ -1,0 +1,4 @@
+scenario,annualized_observed_cash_inr,targetable_share_assumption_pct,targetable_cash_base_inr,incremental_lift_assumption_pct,incremental_gross_recovery_inr,benefit_realization_factor_assumption_pct,realized_economic_benefit_inr,investment_inr,net_benefit_after_investment_inr,planning_roi_pct,break_even_gross_incremental_recovery_inr,break_even_lift_on_targetable_base_pct,classification
+Downside,1826604620.97,70.0,1278623234.68,5.0,63931161.73,85.0,54341487.47,100000000.0,-45658512.53,-45.66,117647058.82,9.2,ASSUMPTION-BASED SCENARIO; NOT MEASURED CAUSAL LIFT
+Base case,1826604620.97,70.0,1278623234.68,10.0,127862323.47,85.0,108682974.95,100000000.0,8682974.95,8.68,117647058.82,9.2,ASSUMPTION-BASED SCENARIO; NOT MEASURED CAUSAL LIFT
+Upside,1826604620.97,70.0,1278623234.68,15.0,191793485.2,85.0,163024462.42,100000000.0,63024462.42,63.02,117647058.82,9.2,ASSUMPTION-BASED SCENARIO; NOT MEASURED CAUSAL LIFT

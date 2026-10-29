@@ -1,0 +1,4 @@
+metric,value
+mix_dimensions_audited,"risk_segment, loan_type, status, timezone"
+month_pairs_with_direction_disagreement,0
+warning,Amount-per-account is descriptive; risk segment mix alone does not control all confounding

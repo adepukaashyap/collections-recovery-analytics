@@ -1,0 +1,5 @@
+current_status_norm,accounts,accounts_with_history,accounts_without_history,status_disagreements
+ACTIVE,7539,6472,1067,5557
+CLOSED,7496,6496,1000,5555
+PAID,7486,6514,972,5591
+WRITEOFF,7479,6517,962,5592

@@ -1,0 +1,31 @@
+{
+  "dataset": "Synthetic Collections Analytics Dataset; seed 42",
+  "raw_dataset_files": 18,
+  "account_rows_raw": 30000,
+  "canonical_accounts": 30000,
+  "raw_agent_rows": 30000,
+  "canonical_agents": 1000,
+  "raw_payment_rows": 25500,
+  "canonical_payment_events": 21189,
+  "effective_successful_payment_events": 14840,
+  "effective_recovered_amount_inr": 1112566691.46,
+  "payment_observation_start": "2026-01-01",
+  "payment_observation_end": "2026-08-08",
+  "completed_months": 7,
+  "partial_months": [
+    "2026-08"
+  ],
+  "mean_completed_month_mom_amount_growth_pct": 5.088484149218917,
+  "median_completed_month_mom_amount_growth_pct": 5.609706324561902,
+  "months_with_10_to_12_pct_amount_growth": 1,
+  "claim_verdict": "NOT VALIDATED: amount-only trend cannot establish recovery-rate growth; no historical eligible-balance denominator and less than 12 complete months.",
+  "investment_decision": "Gate the ₹10 Cr investment; run finance reconciliation and randomized pilot first. ROI/break-even not estimable from supplied fields.",
+  "notes": [
+    "Dataset is synthetic.",
+    "Payment canonicalization keeps latest status per transaction key; SUCCESS only counts as recovered cash.",
+    "August 2026 is partial.",
+    "Channel/campaign cuts are descriptive and not causal.",
+    "Mix-adjusted amount-per-account is not a recovery rate.",
+    "Same-timestamp duplicate payment IDs now deterministically prefer a populated payment reference; conflicts remain documented."
+  ]
+}

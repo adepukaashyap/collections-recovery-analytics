@@ -1,0 +1,2 @@
+audit,rows,rows_with_hour_changed,pct_with_hour_changed,rows_with_date_changed,pct_with_date_changed,interpretation
+calls timezone sensitivity,91350,60949,66.72,12097,13.242,Sensitivity only; source timestamp semantics are undocumented

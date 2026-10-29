@@ -1,0 +1,12 @@
+measure,value,interpretation
+Raw payment rows,25500.0,Rows before deduplication
+After payment_id deduplication,25000.0,Unique payment IDs; some IDs may have status/event updates
+Canonical transaction-reference events,21189.0,Latest canonical event per reference; missing references use payment-ID surrogate
+Rows removed between raw and canonical,4311.0,Net reduction; not every removed row is necessarily erroneous
+Raw SUCCESS amount before canonicalization (INR),1341485926.33,"Inflated/uncanonicalized comparison, not an approved ledger total"
+Canonical effective SUCCESS cash (INR),1112566691.46,Only final canonical SUCCESS amounts contribute
+Raw SUCCESS minus canonical cash (INR),228919234.87,Difference caused by event/reference/status canonicalization; Finance reconciliation required
+Canonical event reduction (%),16.91,Reduction relative to raw payment rows
+Cash amount reduction (%),17.06,Comparison of raw SUCCESS rows vs canonical effective cash; not automatically an error rate
+Golden account-month rows,240000.0,Account × observed month spine
+Golden account-month duplicate keys,0.0,Expected zero

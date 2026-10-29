@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+<title id="title">Collections Recovery Analytics Architecture and Data Flow</title><desc id="desc">Directional flow from raw source files through staging, canonicalization, metrics and dashboard, with quality gates and monitoring feedback.</desc>
+<defs>
+ <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M1,1 L11,6 L1,11 z" fill="#456fe8"/></marker>
+ <marker id="arrowTeal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M1,1 L11,6 L1,11 z" fill="#159b8a"/></marker>
+ <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#14243b" flood-opacity=".10"/></filter>
+ <style>.title{font:700 32px Arial,sans-serif;fill:#14243b}.subtitle{font:16px Arial,sans-serif;fill:#68788f}.head{font:700 20px Arial,sans-serif;fill:#14243b}.body{font:15px Arial,sans-serif;fill:#52647a}.small{font:700 12px Arial,sans-serif;letter-spacing:1.4px;fill:#456fe8}.lineLabel{font:700 13px Arial,sans-serif;fill:#456fe8}.box{stroke:#dce5f0;stroke-width:1.5;filter:url(#shadow)}.arrow{fill:none;stroke:#456fe8;stroke-width:3.5;marker-end:url(#arrow);stroke-linecap:round;stroke-linejoin:round}.feedback{fill:none;stroke:#159b8a;stroke-width:3;stroke-dasharray:8 7;marker-end:url(#arrowTeal);stroke-linecap:round;stroke-linejoin:round}</style>
+</defs>
+<rect width="1500" height="900" fill="#f3f6fb"/>
+<text x="60" y="65" class="title">Collections Recovery Analytics</text><text x="60" y="96" class="subtitle">End-to-end data lineage · validation gates · decision support</text>
+<rect x="60" y="135" width="1380" height="390" rx="24" fill="#eaf0f9" stroke="#dbe5f1"/>
+<text x="90" y="173" class="small">PRIMARY DATA FLOW  →</text>
+<!-- stage 1 -->
+<rect class="box" x="90" y="215" width="250" height="180" rx="18" fill="#ffffff"/><rect x="90" y="215" width="250" height="12" rx="6" fill="#456fe8"/><circle cx="125" cy="258" r="19" fill="#e8efff"/><text x="125" y="265" text-anchor="middle" class="head" fill="#315bd0">1</text><text x="118" y="305" class="head">Raw source files</text><text x="118" y="335" class="body">CSV inputs retained</text><text x="118" y="359" class="body">unchanged in data/raw</text><text x="118" y="383" class="body">Traceable source layer</text>
+<!-- stage 2 -->
+<rect class="box" x="430" y="215" width="250" height="180" rx="18" fill="#ffffff"/><rect x="430" y="215" width="250" height="12" rx="6" fill="#159b8a"/><circle cx="465" cy="258" r="19" fill="#e1f6f1"/><text x="465" y="265" text-anchor="middle" class="head">2</text><text x="458" y="305" class="head">Stage &amp; validate</text><text x="458" y="335" class="body">Schema and null checks</text><text x="458" y="359" class="body">IDs, timestamps, types</text><text x="458" y="383" class="body">Profile anomalies</text>
+<!-- stage 3 -->
+<rect class="box" x="770" y="215" width="250" height="180" rx="18" fill="#ffffff"/><rect x="770" y="215" width="250" height="12" rx="6" fill="#d99521"/><circle cx="805" cy="258" r="19" fill="#fff2d9"/><text x="805" y="265" text-anchor="middle" class="head">3</text><text x="798" y="305" class="head">Canonicalize</text><text x="798" y="335" class="body">Deduplicate entities</text><text x="798" y="359" class="body">Resolve payment states</text><text x="798" y="383" class="body">Build Golden Dataset</text>
+<!-- stage 4 -->
+<rect class="box" x="1110" y="215" width="250" height="180" rx="18" fill="#ffffff"/><rect x="1110" y="215" width="250" height="12" rx="6" fill="#7659c8"/><circle cx="1145" cy="258" r="19" fill="#eee9ff"/><text x="1145" y="265" text-anchor="middle" class="head">4</text><text x="1138" y="305" class="head">Metrics &amp; decisions</text><text x="1138" y="335" class="body">Monthly and segment KPIs</text><text x="1138" y="359" class="body">Dashboard and memo</text><text x="1138" y="383" class="body">Investment decision support</text>
+<!-- directional arrows -->
+<path class="arrow" d="M340 305 H417"/><text x="378" y="287" text-anchor="middle" class="lineLabel">load</text>
+<path class="arrow" d="M680 305 H757"/><text x="718" y="287" text-anchor="middle" class="lineLabel">clean</text>
+<path class="arrow" d="M1020 305 H1097"/><text x="1058" y="287" text-anchor="middle" class="lineLabel">aggregate</text>
+<!-- lower control layer -->
+<text x="70" y="585" class="small">CROSS-CUTTING CONTROLS</text>
+<rect class="box" x="90" y="620" width="360" height="145" rx="16" fill="#ffffff"/><circle cx="126" cy="660" r="17" fill="#e1f6f1"/><path d="M118 660 l6 6 11 -14" stroke="#159b8a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="158" y="666" class="head">Data quality gates</text><text x="118" y="704" class="body">Primary keys · missingness · duplicate checks</text><text x="118" y="730" class="body">Referential integrity · Finance reconciliation</text>
+<rect class="box" x="570" y="620" width="360" height="145" rx="16" fill="#ffffff"/><circle cx="606" cy="660" r="17" fill="#e8efff"/><path d="M606 649 v12 l8 4" stroke="#456fe8" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="606" cy="660" r="11" stroke="#456fe8" stroke-width="2.5" fill="none"/><text x="638" y="666" class="head">Monitoring &amp; lineage</text><text x="598" y="704" class="body">Freshness · volume anomalies · run metadata</text><text x="598" y="730" class="body">Versioned transformations and audit trail</text>
+<rect class="box" x="1050" y="620" width="360" height="145" rx="16" fill="#ffffff"/><circle cx="1086" cy="660" r="17" fill="#fff2d9"/><text x="1086" y="667" text-anchor="middle" class="head" fill="#98600b">!</text><text x="1118" y="666" class="head">Decision safeguards</text><text x="1078" y="704" class="body">Denominator and portfolio-mix checks</text><text x="1078" y="730" class="body">Descriptive trends ≠ causal lift</text>
+<!-- feedback arrows to control layer -->
+<path class="feedback" d="M555 395 V555 H270 V608"/><text x="390" y="545" class="lineLabel" fill="#159b8a">quality results</text>
+<path class="feedback" d="M895 395 V570 H750 V608"/><text x="790" y="560" class="lineLabel" fill="#159b8a">run status</text>
+<path class="feedback" d="M1235 395 V555 H1230 V608"/><text x="1255" y="545" class="lineLabel" fill="#159b8a">guardrails</text>
+<rect x="90" y="800" width="1320" height="54" rx="13" fill="#fff7e5" stroke="#f0dcae"/><text x="115" y="833" font-family="Arial" font-size="15" font-weight="700" fill="#8c5d0d">Production readiness:</text><text x="290" y="833" font-family="Arial" font-size="15" fill="#6d5529">Confirm timestamp semantics, reconcile cash to Finance, and obtain a longer observation window before claiming recovery-rate improvement.</text>
+</svg>

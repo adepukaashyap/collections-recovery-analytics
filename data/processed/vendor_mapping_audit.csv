@@ -1,0 +1,5 @@
+metric,value
+disposition_rows,35494
+distinct_vendor_version_code_combinations,405
+vendors_with_multiple_disposition_versions,15
+warning,No vendor mapping effective dates or approved crosswalk supplied; trends cannot prove a mapping change

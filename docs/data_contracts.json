@@ -1,0 +1,80 @@
+{
+  "payments": {
+    "primary_key": [
+      "payment_id"
+    ],
+    "required": [
+      "payment_id",
+      "account_id",
+      "event_at",
+      "payment_status",
+      "amount"
+    ],
+    "types": {
+      "amount": "numeric",
+      "event_at": "timestamp",
+      "payment_status": "enum: SUCCESS|FAILED|PENDING|REVERSED"
+    },
+    "freshness": "event_at watermark; late events trigger affected-month recompute",
+    "owner": "Payments/Finance",
+    "quality_rules": [
+      "payment_id non-null",
+      "amount parseable",
+      "account_id resolves to account master",
+      "same-timestamp conflicting updates quarantined pending tie-break rule"
+    ]
+  },
+  "accounts": {
+    "primary_key": [
+      "account_id"
+    ],
+    "required": [
+      "account_id",
+      "borrower_id",
+      "principal_amount",
+      "outstanding_amount",
+      "status"
+    ],
+    "owner": "Lending/Collections",
+    "quality_rules": [
+      "account_id unique in canonical snapshot",
+      "outstanding non-negative unless approved exception",
+      "dated eligibility snapshot required for recovery-rate denominator"
+    ]
+  },
+  "calls": {
+    "primary_key": [
+      "call_id"
+    ],
+    "required": [
+      "call_id",
+      "account_id",
+      "event_at",
+      "agent_id",
+      "vendor_id"
+    ],
+    "owner": "Telephony Operations",
+    "quality_rules": [
+      "call_id unique after source event resolution",
+      "vendor timezone contract defined",
+      "vendor/version disposition crosswalk approved"
+    ]
+  },
+  "daily_targeting": {
+    "primary_key": [
+      "target_id"
+    ],
+    "required": [
+      "target_id",
+      "account_id",
+      "target_date",
+      "recommended_channel"
+    ],
+    "owner": "Collections Strategy",
+    "quality_rules": [
+      "target_id unique",
+      "treatment assignment and exposure timestamp retained",
+      "randomized holdout required for causal lift"
+    ]
+  }
+}

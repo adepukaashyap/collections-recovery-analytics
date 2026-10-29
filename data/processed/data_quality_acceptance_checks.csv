@@ -1,0 +1,15 @@
+check_id,area,severity,check,observed,threshold,status,business_impact,action
+PAY-001,payments,CRITICAL,Canonical transaction key unique,0.0,0 duplicates,PASS,Prevents double-counting transaction references,Block release if failed
+PAY-002,payments,CRITICAL,Non-success cash excluded,0.0,₹0,PASS,"Avoids counting failed, pending or reversed events as recovered cash",Block release if failed
+PAY-003,payments,HIGH,Raw payment ID missing count,0.0,0,PASS,Missing IDs prevent reliable event deduplication,Quarantine rows with missing IDs
+PAY-004,payments,HIGH,Unrecognized raw payment statuses,0.0,0 or approved mapping,PASS,Unknown status could be misclassified in recovered cash,Map or quarantine unknown statuses
+PAY-005,payments,HIGH,Negative or unparseable raw payment amounts,0.0,0 or approved reversal policy,PASS,Amount quality changes cash totals,Reconcile to payment ledger
+GOLD-001,golden_dataset,CRITICAL,Unique account-month key,0.0,0 duplicates,PASS,Prevents duplicate account-month aggregation,Block release if failed
+GOLD-002,golden_dataset,HIGH,Golden account coverage vs canonical accounts,30000.0,30000 canonical accounts,PASS,Coverage loss can bias population rates,Investigate missing accounts
+GOLD-003,golden_dataset,HIGH,Historical denominator clearly flagged,0.0,0 missing warnings,PASS,Prevents current snapshot balance being mistaken for historical eligible balance,Keep rate claims blocked until historical balances supplied
+DQ-001,referential_integrity,HIGH,Payment account IDs resolve to canonical accounts,0.0,0 or documented exception,PASS,Orphan payments may not join to portfolio metrics,Resolve or quarantine orphan rows
+DQ-002,metrics,CRITICAL,Monthly recovered cash reconciles to canonical payment output,0.0,₹0 difference,PASS,Ensures headline cash agrees to canonical payment events,Block release if failed
+DQ-003,metrics,CRITICAL,Forensic canonical count matches main pipeline,main=21189; forensic=21189,count and cash must reconcile,PASS,Prevents conflicting canonical totals across reports,Compare after forensic stage in run_all.py
+RECON-001,cross_output_reconciliation,CRITICAL,Main vs forensic canonical event count,0.0,0,PASS,Keeps canonical event count and cash totals consistent across reports,Block release and investigate if failed
+RECON-002,cross_output_reconciliation,CRITICAL,Main vs forensic effective recovered cash (INR),0.0,0.01,PASS,Keeps canonical event count and cash totals consistent across reports,Block release and investigate if failed
+RECON-003,cross_output_reconciliation,CRITICAL,Canonical cash vs monthly metrics total (INR),0.0,0.01,PASS,Keeps canonical event count and cash totals consistent across reports,Block release and investigate if failed

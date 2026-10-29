@@ -1,0 +1,536 @@
+{
+  "generated_at_utc": "2026-10-29T17:26:47.614135+00:00",
+  "entrypoint": "python src/run_all.py",
+  "stages": [
+    {
+      "stage": "canonicalization_and_golden",
+      "script": "src/run_pipeline.py",
+      "inputs": "data/raw/*.csv",
+      "outputs": [
+        "data/processed/*_canonical.csv",
+        "data/processed/payments_canonical.csv",
+        "data/processed/monthly_recovery_metrics.csv",
+        "data/processed/golden_dataset_account_month.csv"
+      ]
+    },
+    {
+      "stage": "extended_descriptive_analysis",
+      "script": "src/extended_analysis.py",
+      "inputs": [
+        "data/processed/payments_canonical.csv",
+        "data/processed/golden_dataset_account_month.csv",
+        "data/raw/daily_targeting.csv"
+      ],
+      "outputs": [
+        "data/processed/targeting_descriptive_association.csv",
+        "data/processed/campaign_descriptive_association.csv",
+        "data/processed/account_vintage_metrics.csv",
+        "data/processed/mix_adjusted_descriptive_metrics.csv"
+      ]
+    },
+    {
+      "stage": "forensic_audits",
+      "script": "src/forensic_analysis.py",
+      "inputs": "raw and canonical data",
+      "outputs": "data/processed/*audit*.csv and expanded forensic report"
+    },
+    {
+      "stage": "operational_controls",
+      "script": "src/operational_controls.py",
+      "outputs": [
+        "docs/data_contracts.json",
+        "reports/lineage_manifest.json",
+        "data/processed/monthly_anomaly_flags.csv"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "data/raw/account_status_history.csv",
+      "sha256": "e3d966013537b507c0a7a4dab995ee6f385dbb289585e10c9e535e9cf2456d55",
+      "rows": 60000,
+      "columns": [
+        "history_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "status",
+        "changed_by",
+        "source",
+        "recorded_at"
+      ]
+    },
+    {
+      "path": "data/raw/accounts.csv",
+      "sha256": "7b20ca4f1d9f7e845b3acb5272df92785f85c127038a06c7c0d7156b1098745c",
+      "rows": 30000,
+      "columns": [
+        "account_id",
+        "borrower_id",
+        "loan_type",
+        "principal_amount",
+        "outstanding_amount",
+        "dpd",
+        "risk_segment",
+        "status",
+        "opened_at",
+        "timezone",
+        "schema_version"
+      ]
+    },
+    {
+      "path": "data/raw/agent_sessions.csv",
+      "sha256": "dbdd5e176cc196ba24b62b803c648657b43fe530fdfcb4699f72b2c2c257296a",
+      "rows": 15000,
+      "columns": [
+        "session_id",
+        "agent_id",
+        "login_at",
+        "channel",
+        "device_id",
+        "timezone",
+        "logout_at"
+      ]
+    },
+    {
+      "path": "data/raw/agents.csv",
+      "sha256": "c479a49e1612662ad7f65d896c6396bc3548392392e8c2b8898752c10f5cb2e4",
+      "rows": 30000,
+      "columns": [
+        "agent_id",
+        "employee_code",
+        "agent_name",
+        "vendor_id",
+        "team",
+        "status",
+        "joined_at",
+        "updated_at"
+      ]
+    },
+    {
+      "path": "data/raw/borrowers.csv",
+      "sha256": "9a9398a23caab6950ab402f4939849d9c5ebace753f6112f3eec987a0b2f7c6b",
+      "rows": 30600,
+      "columns": [
+        "borrower_id",
+        "name",
+        "phone",
+        "email",
+        "city",
+        "created_at",
+        "updated_at",
+        "state"
+      ]
+    },
+    {
+      "path": "data/raw/call_attempts.csv",
+      "sha256": "47a7cef6c478e0e44b569732bb98a77ac5033d7f95b0eb422ddcf5319c3e9624",
+      "rows": 120000,
+      "columns": [
+        "attempt_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "call_id",
+        "agent_id",
+        "attempt_no",
+        "vendor_id",
+        "attempt_status"
+      ]
+    },
+    {
+      "path": "data/raw/call_dispositions.csv",
+      "sha256": "ce1aa618a0694402abac82e7f48497d63404bc7d037578fc251cd3569df8ddc1",
+      "rows": 35000,
+      "columns": [
+        "disposition_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "call_id",
+        "agent_id",
+        "disposition_code",
+        "disposition_version"
+      ]
+    },
+    {
+      "path": "data/raw/calls.csv",
+      "sha256": "9fdaa69308c21a20a97c152e291a06297831046a888acf91811b99b080ccf295",
+      "rows": 91350,
+      "columns": [
+        "call_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "agent_id",
+        "campaign_id",
+        "direction",
+        "vendor_id",
+        "call_status",
+        "duration_sec",
+        "timezone"
+      ]
+    },
+    {
+      "path": "data/raw/campaigns.csv",
+      "sha256": "bd2b4f627e550ffd10682dee8de66054708465958b493bce3838d3a24feeb181",
+      "rows": 120,
+      "columns": [
+        "campaign_id",
+        "campaign_name",
+        "channel",
+        "strategy_version",
+        "start_at",
+        "target_definition",
+        "end_at"
+      ]
+    },
+    {
+      "path": "data/raw/complaints.csv",
+      "sha256": "780ab03a9955a5cba7fc3a57758576e820b67926d88f816643ec00e7d3e79c62",
+      "rows": 8000,
+      "columns": [
+        "complaint_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "complaint_type",
+        "severity",
+        "status",
+        "source",
+        "resolution_at"
+      ]
+    },
+    {
+      "path": "data/raw/daily_targeting.csv",
+      "sha256": "0b85d799d951c112dad38725f0c685e35dfd2cb3fc2f414b17979814ce591074",
+      "rows": 45000,
+      "columns": [
+        "target_id",
+        "account_id",
+        "campaign_id",
+        "target_date",
+        "priority",
+        "recommended_channel",
+        "status"
+      ]
+    },
+    {
+      "path": "data/raw/data_dictionary.csv",
+      "sha256": "561f05e3828c4687004bdfa97f7cfa946722cacc87139c2103f5c450789ec202",
+      "rows": 143,
+      "columns": [
+        "dataset",
+        "column",
+        "dtype"
+      ]
+    },
+    {
+      "path": "data/raw/field_visits.csv",
+      "sha256": "626fe8f886164922d82517a54cdcc37f01a2231f77349e7fdc8ed2f582cb8ba8",
+      "rows": 25000,
+      "columns": [
+        "visit_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "agent_id",
+        "visit_type",
+        "outcome",
+        "latitude",
+        "longitude",
+        "scheduled_at"
+      ]
+    },
+    {
+      "path": "data/raw/payments.csv",
+      "sha256": "5639c2d5b88a8aee2267dd27127c28d9e82e163c56940e9e3dafd02040fbb9e8",
+      "rows": 25500,
+      "columns": [
+        "payment_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "payment_reference",
+        "amount",
+        "payment_status",
+        "payment_method",
+        "provider_id"
+      ]
+    },
+    {
+      "path": "data/raw/promises_to_pay.csv",
+      "sha256": "454702ee76d0d5ff991ed8a128fd11606332ff9adaa27fcdf3bc75480b8da5ff",
+      "rows": 18000,
+      "columns": [
+        "ptp_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "agent_id",
+        "promised_amount",
+        "promised_date",
+        "status",
+        "source"
+      ]
+    },
+    {
+      "path": "data/raw/sms_events.csv",
+      "sha256": "364492ba295aede3d977ab98001af18b5c86a442184620c6f8d9f88dbd02f974",
+      "rows": 45000,
+      "columns": [
+        "sms_event_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "message_id",
+        "event_type",
+        "template_code",
+        "provider_id"
+      ]
+    },
+    {
+      "path": "data/raw/vendor_telephony.csv",
+      "sha256": "268ca539fea135cbf577077d9eda7e361cf8e16d098e5f432e5d610ef88feada",
+      "rows": 15,
+      "columns": [
+        "vendor_id",
+        "vendor_name",
+        "vendor_account_id",
+        "timezone",
+        "status",
+        "schema_version"
+      ]
+    },
+    {
+      "path": "data/raw/whatsapp_events.csv",
+      "sha256": "ba1e9a1a44ac41c6da64d01376be625289a94cfb67197f0ff5f0b185d2e4cfc8",
+      "rows": 60600,
+      "columns": [
+        "whatsapp_event_id",
+        "account_id",
+        "borrower_id",
+        "event_at",
+        "message_id",
+        "event_type",
+        "template_code",
+        "provider_id"
+      ]
+    },
+    {
+      "path": "data/processed/account_contact_and_payment_coverage.csv",
+      "sha256": "5117f226cd9094d0493195f3f9ee48868faae17e68c272e8e5b79b733d736595",
+      "rows": 30000
+    },
+    {
+      "path": "data/processed/account_contact_payment_coverage_summary.csv",
+      "sha256": "55b52a89824688b872109d04f7d9efe5b14da24047bc3e8679e7dea93e934ddc",
+      "rows": 32
+    },
+    {
+      "path": "data/processed/account_vintage_metrics.csv",
+      "sha256": "c3af5aabb25112b2343e983ae27c966dd6a62e3dae4a9a5b918117020461d4f3",
+      "rows": 460
+    },
+    {
+      "path": "data/processed/accounts_canonical.csv",
+      "sha256": "7d2f0da098b4b440eb85034af10bfe524fa144c03d68671aa2761e7974868b8d",
+      "rows": 30000
+    },
+    {
+      "path": "data/processed/agent_employee_code_conflicts.csv",
+      "sha256": "180cb75e321339ccbb8ec6c2ca63343d8b910854eae5d0d292405a6ff4e8db64",
+      "rows": 1099
+    },
+    {
+      "path": "data/processed/agent_id_conflicts.csv",
+      "sha256": "2d373229d3cd08804e7fa8b0320707acffe67a75beced214cb83b7b766f0b672",
+      "rows": 1000
+    },
+    {
+      "path": "data/processed/agent_identity_audit.csv",
+      "sha256": "6e0c339d8f690f9fc61dd1c20fa4ec766a225a538c7145fd8d147c00fcf6888c",
+      "rows": 6
+    },
+    {
+      "path": "data/processed/agents_canonical.csv",
+      "sha256": "04d1a371daa5fb23069d5d29780302b21ca44cd39003ee0e6af886b8695dc936",
+      "rows": 1000
+    },
+    {
+      "path": "data/processed/attribution_window_audit.csv",
+      "sha256": "4739ddd97e5182344270b036c539c839051e6a38261799278e5cad62d492413f",
+      "rows": 2
+    },
+    {
+      "path": "data/processed/attribution_window_sensitivity.csv",
+      "sha256": "85e3d879a42168ac044d9fffa2fc24a1b9cbe56928fd8727a0e66299755899de",
+      "rows": 20
+    },
+    {
+      "path": "data/processed/borrowers_canonical.csv",
+      "sha256": "fe10a9c62742dde9397da8bd129810174f497fffc8d833a0d96449838423e4f1",
+      "rows": 11015
+    },
+    {
+      "path": "data/processed/campaign_descriptive_association.csv",
+      "sha256": "21d6ae3599fb96274d851557d3649ce60cc1347fe2327ff729b1327ad54b9378",
+      "rows": 480
+    },
+    {
+      "path": "data/processed/campaigns_canonical.csv",
+      "sha256": "bd2b4f627e550ffd10682dee8de66054708465958b493bce3838d3a24feeb181",
+      "rows": 120
+    },
+    {
+      "path": "data/processed/cleaning_impact_summary.csv",
+      "sha256": "2eafe513011c66f1b2007311b8d1c19a90b959a2b7de961f91ac9fa2295cfac2",
+      "rows": 11
+    },
+    {
+      "path": "data/processed/contact_survivorship_audit.csv",
+      "sha256": "5ed7d1f2bc7bbcd8117a6e029cd52c38cda06548ea8f644bf078f97086ca74fa",
+      "rows": 4
+    },
+    {
+      "path": "data/processed/cross_output_reconciliation.csv",
+      "sha256": "69911d2694e6cd400478d16c2bc9bf52b671e1ef2f17615821596ee7340d9356",
+      "rows": 3
+    },
+    {
+      "path": "data/processed/data_quality_acceptance_checks.csv",
+      "sha256": "9910fea82893203dc6d8914a66a6db7c56cbe8d54c5850cfebe7b67e7c80bd37",
+      "rows": 14
+    },
+    {
+      "path": "data/processed/data_quality_checks.csv",
+      "sha256": "09970e0abdafdfe7f6c8f2985b6b539012b77594d279bf58ac6a97047e69873d",
+      "rows": 68
+    },
+    {
+      "path": "data/processed/denominator_audit.csv",
+      "sha256": "922b04a602e38859a728237a093adac5d3fff9d0e5634ea7b725b02e9c5ff5f4",
+      "rows": 4
+    },
+    {
+      "path": "data/processed/denominator_status_disappearance_audit.csv",
+      "sha256": "926a47dc6558576b3fe6df15a1045da1d3a49735f75ea66b11789d7a84e0f2ee",
+      "rows": 30000
+    },
+    {
+      "path": "data/processed/denominator_status_summary.csv",
+      "sha256": "429622583c0c09d5d3e118896144e6f899d6d5ecf8a7d49d6c62f91e9b321b45",
+      "rows": 4
+    },
+    {
+      "path": "data/processed/golden_dataset_account_month.csv",
+      "sha256": "825d4f24c532df97327e338ac9ae90820abe071e6c658205eb416dc9de6a5861",
+      "rows": 240000
+    },
+    {
+      "path": "data/processed/investment_roi_scenarios.csv",
+      "sha256": "3589586c697d5f835221dd0ad907b3219c4094227150fae41eb7013a1b2d2cbc",
+      "rows": 3
+    },
+    {
+      "path": "data/processed/loan_type_monthly_metrics.csv",
+      "sha256": "fb5834a6f181932a635c4ca483342a69c483757cd684dde16ff86a12ca83c7a3",
+      "rows": 40
+    },
+    {
+      "path": "data/processed/mix_adjusted_descriptive_metrics.csv",
+      "sha256": "e18d03d69e2e0b710d8ec03c5512c5cd7bb57dc4443b3b96bad4be14f722ad62",
+      "rows": 8
+    },
+    {
+      "path": "data/processed/monthly_anomaly_flags.csv",
+      "sha256": "4d8ad85f8c8416b337fd11f578cf535234746d52da4b4b15d316b0e1a6febc5e",
+      "rows": 8
+    },
+    {
+      "path": "data/processed/monthly_recovery_metrics.csv",
+      "sha256": "5990731ea278373454d30da71e80d210546cdc9127db178e6f677480e015fdb7",
+      "rows": 8
+    },
+    {
+      "path": "data/processed/payment_deduplication_impact.csv",
+      "sha256": "08928858d3f84575dcfc674f6d1abd21dc37d4280a8a0ea19862cbd40a5565a1",
+      "rows": 10
+    },
+    {
+      "path": "data/processed/payment_reference_conflicts.csv",
+      "sha256": "a4b7327c32fa43a7c8dea9e460c03f2a7a4e87e49a739b998db3908b9ae824a3",
+      "rows": 3745
+    },
+    {
+      "path": "data/processed/payments_canonical.csv",
+      "sha256": "55d48e94354df88ca1e561946b29f0113bf99511c0f43c54cc15b759c7b9ce4c",
+      "rows": 21189
+    },
+    {
+      "path": "data/processed/payments_canonical_forensic.csv",
+      "sha256": "c45fb01452335f3d9d11c54d27aafe118b2f62714e98147f828bd61d297e98a3",
+      "rows": 21189
+    },
+    {
+      "path": "data/processed/population_mix_audit.csv",
+      "sha256": "3f4067b20959c1c4eb93f3ac7b765e9177fe527cae43362b4f226e2c49159f4d",
+      "rows": 3
+    },
+    {
+      "path": "data/processed/population_mix_monthly.csv",
+      "sha256": "0292dcda26b2e784d89eed57d3b7c3ab5085729b53e680a1e259cc4cbde02ac8",
+      "rows": 128
+    },
+    {
+      "path": "data/processed/segment_monthly_metrics.csv",
+      "sha256": "860de28c24b9c495be315a5bfb49872e24d1090660d99ffff2cf7df07f311bbf",
+      "rows": 32
+    },
+    {
+      "path": "data/processed/simpson_mix_direction_diagnostic.csv",
+      "sha256": "56b10aec9c5977bb7a3c73275221a5bfb90d80ff32f07b2e8182c2247de0df66",
+      "rows": 7
+    },
+    {
+      "path": "data/processed/targeting_channel_metrics.csv",
+      "sha256": "2183b4af1474c84c8f97ed7733992e2c617a2dc560ac15c187ff98cd04c58e28",
+      "rows": 32
+    },
+    {
+      "path": "data/processed/targeting_descriptive_association.csv",
+      "sha256": "e17a695becfbfbf913e5809598a3a5d876b3cb18b226f194870e3a2359543ddd",
+      "rows": 4
+    },
+    {
+      "path": "data/processed/timezone_sensitivity.csv",
+      "sha256": "c653968ea454d2d8288517f512ac5486ffbf0cd96dbb794d07555b1fb573ac7a",
+      "rows": 1
+    },
+    {
+      "path": "data/processed/timezone_sensitivity_audit.csv",
+      "sha256": "0f0f9ef3a576f116c2c8fb29d992f80c33707b2b2ac209f97eae3e4048c89238",
+      "rows": 91350
+    },
+    {
+      "path": "data/processed/vendor_disposition_code_trends.csv",
+      "sha256": "9f2937dc695892d266592671d6d8c30f09aedef15897958aadaf09fd2c3c1233",
+      "rows": 3221
+    },
+    {
+      "path": "data/processed/vendor_disposition_mapping_review.csv",
+      "sha256": "ab0966652bdb6ebdbedc7acc6fd5ba8141ebd7d58716a305a3bc463e0b91f46a",
+      "rows": 405
+    },
+    {
+      "path": "data/processed/vendor_mapping_audit.csv",
+      "sha256": "404aebd4514d0e2f61bea7050156accd1f1e4af013932ca773cd3e418c660c0a",
+      "rows": 4
+    },
+    {
+      "path": "data/processed/vendors_canonical.csv",
+      "sha256": "268ca539fea135cbf577077d9eda7e361cf8e16d098e5f432e5d610ef88feada",
+      "rows": 15
+    }
+  ]
+}

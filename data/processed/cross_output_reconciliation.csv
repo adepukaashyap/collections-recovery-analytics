@@ -1,0 +1,4 @@
+check_id,measure,main_value,forensic_value,absolute_difference,tolerance,status
+RECON-001,Main vs forensic canonical event count,21189.0,21189.0,0.0,0.0,PASS
+RECON-002,Main vs forensic effective recovered cash (INR),1112566691.46,1112566691.46,0.0,0.01,PASS
+RECON-003,Canonical cash vs monthly metrics total (INR),1112566691.46,1112566691.46,0.0,0.01,PASS

@@ -1,0 +1,5 @@
+recommended_channel,targets,accounts,targets_with_payment_7d,observed_payment_amount_7d,observed_conversion_rate_pct,interpretation
+FIELD,11365,9493,163,12760497.73,1.4342278926528818,Descriptive only; no randomized holdout or causal attribution
+SMS,11221,9360,175,12611349.25,1.5595757953836555,Descriptive only; no randomized holdout or causal attribution
+VOICE,11202,9393,190,14681127.05,1.6961256918407428,Descriptive only; no randomized holdout or causal attribution
+WHATSAPP,11212,9363,169,12494952.03,1.5073135925793792,Descriptive only; no randomized holdout or causal attribution
