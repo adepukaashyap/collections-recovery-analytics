@@ -1,81 +1,301 @@
-# Collections Recovery Analytics — expanded audited project
+# 📊 Collections Recovery Analytics
 
-This repository uses the supplied **Synthetic Collections Analytics Dataset**. It contains raw data, canonicalization pipeline, descriptive analysis, expanded forensic audits, data contracts, lineage/run manifest, anomaly flags, SQL templates, an executed notebook, tests, dashboard, architecture diagram and executive memo.
+### An End-to-End Data Analytics Platform for Payment Recovery, Financial Reconciliation & Business Intelligence
 
-## Key result
+**Collections Recovery Analytics** is a data analytics project designed to transform collections and payment data into actionable business insights. It combines data cleaning, quality validation, SQL-based analysis, recovery performance monitoring, financial reconciliation, and counterfactual pilot evaluation to support data-driven collections strategies.
 
-The files contain **30,000 raw account rows** and payment events from **2026-01-01 to 2026-08-08**, not 12 complete months. The project does **not** certify the “11% month-on-month recovery” claim. July recovered cash rose 11.33% versus June, but that is an amount trend, not a recovery-rate improvement. Historical month-opening eligible balance is absent.
+The platform demonstrates how data analytics can help financial operations teams understand payment behavior, monitor recovery performance, identify collection trends, and evaluate potential improvement strategies.
 
-## Quick start
+---
 
-Python 3.10+ recommended.
+## 🚀 Project Overview
 
-```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-python src/run_all.py
-pytest -q
+Collections teams need reliable data and meaningful performance indicators to understand how effectively outstanding payments are recovered.
+
+This project provides a structured analytics workflow that processes transaction data, validates data quality, analyzes recovery trends, and presents business-focused reports to support operational decision-making.
+
+### Key Objectives
+
+- Analyze payment and collections recovery performance.
+- Improve transaction data quality and consistency.
+- Track recovery trends and key business metrics.
+- Support financial reconciliation and reporting workflows.
+- Evaluate collections pilot strategies using counterfactual analysis.
+- Estimate potential financial impact and return on investment (ROI).
+- Convert raw data into clear, decision-oriented insights.
+
+---
+
+## ✨ Key Features
+
+### 1. Data Cleaning & Quality Assurance
+- Transaction data validation and standardization.
+- Data consistency and completeness checks.
+- Identification of duplicate and invalid records.
+- Structured data-quality reporting.
+- Reliable data preparation for downstream analysis.
+
+### 2. Collections Recovery Analytics
+- Payment recovery trend analysis.
+- Collections performance monitoring.
+- Analysis of payment and transaction patterns.
+- Business metric calculation and reporting.
+- Insights to support collections strategy optimization.
+
+### 3. Financial Reconciliation
+- Structured reconciliation workflows for financial metrics.
+- Comparison of transaction-level data and aggregated reporting values.
+- Reconciliation logic to support consistent financial reporting.
+- Reusable analysis workflows for financial data validation.
+
+### 4. Counterfactual Pilot Evaluation
+- A dedicated framework for evaluating collections improvement initiatives.
+- Structured comparison of baseline performance and proposed pilot scenarios.
+- Counterfactual estimation methodology to support impact evaluation.
+- Analysis of potential incremental recovery outcomes.
+- Business-oriented reporting to help stakeholders assess pilot opportunities.
+
+### 5. ROI & Business Impact Modeling
+- Financial impact estimation for proposed collections strategies.
+- Scenario-based recovery analysis.
+- Cost and benefit modeling to support investment decisions.
+- ROI-oriented reporting for operational planning.
+
+### 6. Automated Analytics Workflow
+- Reusable Python-based analysis scripts.
+- SQL-oriented analytical workflows.
+- Organized reports for business interpretation.
+- Reproducible processing and validation steps.
+- Modular project structure for maintainability and future enhancement.
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| **Python** | Data processing, validation, analytics, and automation |
+| **SQL** | Data querying, aggregation, and analytical workflows |
+| **Jupyter Notebook** | Exploratory data analysis and interactive investigation |
+| **Pandas** | Data manipulation and transformation |
+| **HTML** | Business-facing analytical reports |
+| **Git & GitHub** | Version control and project management |
+
+---
+
+## 🏗️ Project Workflow
+
+```text
+Raw Collections & Payment Data
+              |
+              v
+      Data Ingestion
+              |
+              v
+ Data Cleaning & Validation
+              |
+              v
+    Data Quality Checks
+              |
+              v
+     Analytical Processing
+              |
+       +------+------+
+       |             |
+       v             v
+ Recovery Trends   Financial
+ & KPI Analysis    Reconciliation
+       |             |
+       +------+------+
+              |
+              v
+ Counterfactual Pilot Evaluation
+              |
+              v
+    ROI & Scenario Modeling
+              |
+              v
+    Reports & Business Insights
 ```
 
-`run_all.py` runs canonicalization, Golden Dataset generation, counterfactual pilot template preparation, extended descriptive analysis, forensic audits, cross-output reconciliation, operational controls, investment scenarios and the causal estimator status gate in order. Open `dashboard/index.html` for the executive dashboard. Open `reports/expanded_forensic_audit.html` for the styled forensic audit report (or `reports/expanded_forensic_audit.md` for the source text), `reports/executive_memo.html` for the styled memo, and `notebooks/collections_analysis.ipynb` for the executed analysis notebook.
+---
 
-## New forensic outputs
+## 📈 Business Value
 
-- `data/processed/payment_deduplication_impact.csv` and `payment_reference_conflicts.csv` — before/after canonicalization amounts and conflicting reference groups.
-- `timezone_sensitivity_audit.csv` — counts of call hour/date changes under a clearly labeled timezone interpretation sensitivity; it does not assume source timestamps are local or UTC.
-- `vendor_disposition_code_trends.csv` and `vendor_disposition_mapping_review.csv` — code/version/vendor/month patterns and candidate aliases for human approval.
-- `agent_employee_code_conflicts.csv` and `agent_id_conflicts.csv` — cross-ID conflict queues; no unsafe automatic identity merges.
-- `denominator_status_disappearance_audit.csv`, `denominator_status_summary.csv`, and `account_contact_payment_coverage.csv` — snapshot/history disagreement and missing contact/payment coverage signals. These do not prove historical denominator manipulation.
-- `population_mix_monthly.csv`, `simpson_mix_direction_diagnostic.csv`, `mix_adjusted_descriptive_metrics.csv`, `account_vintage_metrics.csv` — population composition, direction disagreement and descriptive fixed-mix/cohort checks.
-- `attribution_window_sensitivity.csv` — 1/3/7/14/30-day payment-window sensitivity by channel; descriptive, not causal.
-- `monthly_anomaly_flags.csv` — exploratory anomaly flags, not production alerting.
-- `docs/data_contracts.json`, `reports/lineage_manifest.json`, `docs/production_operating_model.md` — contracts, hashes/row counts, lineage, incremental/backfill design and monitoring requirements.
+The project demonstrates how analytics can support collections and financial operations through:
 
-## Definitions and caveats
+- **Improved data reliability:** Structured validation helps maintain consistent analytical inputs.
+- **Performance visibility:** Recovery trend analysis makes collections patterns easier to understand.
+- **Better financial reporting:** Reconciliation workflows support metric consistency.
+- **Evidence-based planning:** Counterfactual evaluation provides a structured way to assess proposed interventions.
+- **Investment evaluation:** ROI modeling helps compare potential costs and benefits.
+- **Operational efficiency:** Reusable analytical scripts reduce repetitive manual analysis.
 
-- **Effective recovered cash:** latest event per payment reference (or payment-ID surrogate if blank), counted only when final status is `SUCCESS`. Same-timestamp conflicting updates require a source event sequence or business-approved tie-breaker.
-- **Month-on-month growth:** percentage change in completed calendar-month recovered amount. This is not a recovery rate.
-- **Recovery rate:** cannot be calculated reliably without monthly opening eligible balance and a documented eligibility/write-off policy.
-- **Attribution:** channel and targeting cuts are descriptive, not causal. Use a randomized holdout or defensible quasi-experiment before allocating the ₹10 Cr budget.
-- **Timezone:** timestamps are preserved as recorded; source timezone semantics need owner validation before UTC conversion.
-- **Vendor/agent conflicts:** audit queues are generated, but business owners must approve crosswalks and identity resolution.
+---
 
-## Project map
+## 📂 Project Structure
 
-- `data/raw/` — original supplied CSVs (do not edit)
-- `data/processed/` — canonical tables, descriptive metrics and audit outputs
-- `src/run_all.py` — one-command orchestrator
-- `src/run_pipeline.py` — canonical entities/payments/account-month Golden Dataset
-- `src/extended_analysis.py` — targeting, campaign, vintage and mix-standardized analysis
-- `src/forensic_analysis.py` — payment, timezone, vendor, agent, denominator, mix, survivorship and attribution-window audits
-- `src/operational_controls.py` — data contracts, lineage manifest and exploratory anomaly flags
-- `sql/` — PostgreSQL-style SQL templates; see validation boundary below
-- `notebooks/collections_analysis.ipynb` — executed exploratory notebook with saved outputs
-- `reports/` — findings, data quality, forensic results and executive memo
-- `dashboard/index.html` — executive dashboard
-- `diagrams/` — editable draw.io and SVG architecture
+```text
+Collections_Recovery_Analytics/
+│
+├── reports/
+│   ├── counterfactual_pilot_estimate.html
+│   └── ...
+│
+├── src/
+│   ├── analyze_counterfactual_pilot.py
+│   └── ...
+│
+├── notebooks/
+│   └── ...
+│
+├── sql/
+│   └── ...
+│
+├── data/
+│   └── ...
+│
+├── tests/
+│   └── ...
+│
+└── README.md
+```
 
-## Validation boundary
+The project is organized into analytical scripts, reports, notebooks, SQL resources, data assets, and validation tests. File availability may vary by project version.
 
-The Python pipeline and tests run locally. SQL files remain **PostgreSQL-style templates and have not been executed against a PostgreSQL instance** in this environment. Before production, run them against a disposable PostgreSQL database with source-compatible schemas, reconcile SQL totals to Python outputs, and reconcile effective cash to Finance's ledger. This repository also specifies—but does not deploy—persistent watermarks, transactional incremental upserts, alert delivery, approved identity/vendor crosswalks, and randomized experimentation. These require infrastructure or source contracts not supplied in the synthetic dataset.
-### Dashboard and QA review
-- Open `dashboard/index.html` in a browser.
-- Browser screenshot QA remains pending because browser navigation was blocked in the build environment.
+---
 
-## Updated assignment closure artifacts
-- **Golden Dataset / cleaning impact:** `data/processed/golden_dataset_account_month.csv`, `data/processed/cleaning_impact_summary.csv`, `reports/data_quality_report.html`.
-- **₹10 Cr investment model:** `reports/investment_business_case.html` and `data/processed/investment_roi_scenarios.csv`.
-- **Regenerate everything:** `python src/run_all.py`; then run `pytest -q`.
-- **Investment caveat:** better borrower targeting is the recommended area to test first, but its ROI figures are assumption-based planning scenarios. Actual causal lift requires the randomized holdout described in `docs/counterfactual_design.md`.
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Python 3.10 or later
+- Git
+- Visual Studio Code or another Python-compatible editor
+- Jupyter Notebook, if you want to explore notebook-based analysis
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/adepukaashyap/collections-recovery-analytics.git
+cd collections-recovery-analytics
+```
+
+### 2. Create a virtual environment
+
+**Windows:**
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+**macOS/Linux:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install dependencies
+
+If the repository includes a `requirements.txt` file, run:
+
+```bash
+pip install -r requirements.txt
+```
+
+For notebook-based analysis, install Jupyter if needed:
+
+```bash
+pip install notebook
+```
+
+### 4. Explore the project
+
+- Review the `reports/` directory for analytical outputs.
+- Explore `src/` for Python analysis scripts.
+- Review the notebooks for exploratory analysis.
+- Explore the SQL resources for analytical queries and reconciliation logic.
+- Run the available validation tests using the project's documented test instructions.
+
+---
+
+## 🧪 Quality & Validation
+
+The project incorporates automated validation practices to support analytical reliability, including:
+
+- Data-quality checks.
+- Analytical logic tests.
+- Financial metric consistency checks.
+- Reconciliation-oriented validation.
+- Reproducible processing workflows.
+
+---
+
+## 🎯 Skills Demonstrated
+
+This project showcases practical skills relevant to Data Analyst, Business Analyst, Financial Data Analyst, and Analytics Engineer roles:
+
+- Exploratory Data Analysis (EDA)
+- Python for Data Analytics
+- SQL and data aggregation
+- Data cleaning and preprocessing
+- Data quality assurance
+- Financial data analysis
+- Collections and payment performance analysis
+- Counterfactual evaluation methodology
+- ROI and scenario modeling
+- Analytical reporting
+- Testing and reproducibility
+- Git and GitHub
+
+---
+
+## 🔮 Future Enhancements
+
+- Interactive collections performance dashboard.
+- Advanced recovery forecasting.
+- Integration with live financial data sources.
+- Expanded KPI monitoring and alerting.
+- Enhanced scenario analysis and pilot outcome tracking.
+- Scheduled report generation and analytics automation.
+
+---
+
+## 👨‍💻 Author
+
+**Adepu Kaashyap**
+
+GitHub: [@adepukaashyap](https://github.com/adepukaashyap)
+
+---
+
+## ⭐ Project
+
+If you find this project useful, consider starring the repository on GitHub.
+
+**Repository:** [Collections Recovery Analytics](https://github.com/adepukaashyap/collections-recovery-analytics)
+
+*Turning collections data into structured analysis, financial insights, and data-driven decisions.*
 
 
-## Final hardening additions
+## 📸 Project Screenshots
 
-- `data/processed/data_quality_acceptance_checks.csv` records check IDs, severity, observed value, threshold, status, business impact and action. `REVIEW` means a source-policy decision remains; it is not silently passed.
-- `data/processed/cross_output_reconciliation.csv` checks that main canonical payments, forensic canonical payments and monthly totals agree. The current internal Python reconciliation must pass before packaging; it is not an external Finance ledger reconciliation.
-- `data/processed/cleaning_impact_summary.csv` quantifies 25,500 raw payment rows vs 21,189 canonical events (16.91% net row reduction) and ₹134.15 Cr raw SUCCESS-row amount vs ₹111.26 Cr canonical effective cash (₹22.89 Cr difference). This is an audit impact, not proof that every removed row/amount is invalid; Finance sign-off is still required.
-- `data/experiment/pilot_assignment_and_outcome_template.csv` contains the account-level design frame and blank outcome/exposure fields. Eligibility is marked `REVIEW_REQUIRED`; no treatment assignment is made before approved eligibility rules.
-- `data/templates/pilot_results_template.csv` defines the outcome schema. `src/analyze_counterfactual_pilot.py` intentionally reports `NOT_RUN` until real randomized outcomes are supplied; it does not manufacture causal lift.
-- The ROI scenarios remain planning assumptions, not measured causal ROI. Better borrower targeting is the recommended first hypothesis to test, with staged capital release only after the pilot passes its confidence-bound, cost and customer-protection gates.
+### 1. Executive Dashboard
+![Executive Dashboard](images/executive-dashboard.png)
+
+### 2. Monthly Trends and Portfolio Analysis
+![Monthly Trends](images/monthly-trends.png)
+
+### 3. Data Forensics
+![Data Forensics](images/forensic-analysis.png)
+
+### 4. Counterfactual Pilot Estimate
+![Counterfactual Pilot](images/counterfactual-pilot.png)
+
+### 5. Pipeline Execution
+![Pipeline Execution](images/pipeline-success.png)
+
+### 6. System Architecture
+![System Architecture](images/architecture.png)
